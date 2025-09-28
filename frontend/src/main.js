@@ -16,6 +16,12 @@ import store from './store'
 const vuetify = createVuetify({
     components,
     directives,
+    theme: {
+        defaultTheme: 'dark', // 'light' | 'dark' | 'system'
+    },
+    typography: {
+        fontFamily: 'Arial, sans-serif',
+    },
 })
 
 createApp(App)
