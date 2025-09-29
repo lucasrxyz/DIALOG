@@ -1,11 +1,12 @@
 <script setup>
-    // rien de spécial ici pour l’instant
+    import LoadingDialog from "./components/dialoading/LoadingDialog.vue";
 </script>
 
 <template>
     <v-app>
         <v-main>
             <router-view />
+            <LoadingDialog />
         </v-main>
     </v-app>
 </template>

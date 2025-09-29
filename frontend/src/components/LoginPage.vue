@@ -58,7 +58,12 @@
                         <v-divider></v-divider>
                     </v-card-text>
                     <v-card-actions>
-                        <v-btn color="#7f7dff" class="mb-2 rounded-xl"block variant="outlined" @click="register" :disabled="!valid">
+                        <v-btn color="#7f7dff"
+                               class="mb-2 rounded-xl"
+                               block
+                               variant="outlined"
+                               @click="register"
+                               :disabled="!valid">
                             Continue
                         </v-btn>
                     </v-card-actions>
@@ -69,6 +74,8 @@
 </template>
 
 <script>
+    import { useLoadingDialog } from "../utils/loadingDialog";
+
     export default {
         name: "RegisterPage",
         data() {
@@ -106,10 +113,21 @@
                         birthDate: `${this.birthYear}-${this.birthMonth}-${this.birthDay}`,
                         acceptEmails: this.acceptEmails
                     };
-                    console.log("Register data:", formData);
-                    // Ici tu peux faire un dispatch vers ton store ou appeler ton API
+
+                    // Sauvegarde dans localStorage
+                    localStorage.setItem("registerData", JSON.stringify(formData));
+
+                    console.log("Register data saved in localStorage:", formData);
+
+                    const { dialoading } = useLoadingDialog();
+                    dialoading(300);
+
+                    // Redirection (Vue Router)
+                    setTimeout(() => {
+                        this.$router.push("/home");
+                    }, 600);
                 }
-            }
-        }
+            } 
+        },
     };
 </script>
